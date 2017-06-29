@@ -1,5 +1,8 @@
 'use strict';
 
+process.env.BABEL_ENV = 'development';
+process.env.NODE_ENV = 'development';
+
 const path = require('path');
 const webpack = require('webpack');
 
@@ -10,10 +13,9 @@ const publicPath = '/';
 
 module.exports = {
   devtool: 'cheap-module-source-map',
-
   entry: {
     main: paths.appIndexJs,
-    popup: paths.appPopupJs
+    popup: paths.appPopupJs,
   },
   output: {
     path: paths.appBuild,
@@ -77,8 +79,8 @@ module.exports = {
         exclude: /node_modules/,
         loader: require.resolve('babel-loader'),
         options: {
-          presets: ['es2017'],
-          cacheDirectory: true,
+          presets: ['es2017', 'react'],
+          cacheDirectory: false,
         },
       },
 
@@ -100,19 +102,7 @@ module.exports = {
           {
             loader: require.resolve('postcss-loader'),
             options: {
-              ident: 'postcss', // https://webpack.js.org/guides/migrating/#complex-options
-              plugins: () => [
-                require('postcss-flexbugs-fixes'),
-                autoprefixer({
-                  browsers: [
-                    '>1%',
-                    'last 4 versions',
-                    'Firefox ESR',
-                    'not ie < 9', // React doesn't support IE8 anyway
-                  ],
-                  flexbox: 'no-2009',
-                }),
-              ],
+              ident: 'postcss', // https://webpack.js.org/guides/migrating/#complex-options,
             },
           },
         ],

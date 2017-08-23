@@ -58,7 +58,7 @@ function getEnvironment(publicUrl) {
         PUBLIC_URL: purlicUrl,
       }
     );
-    
+
     const stringfied = {
       'process.env': Object.keys(raw).reduce(
         (env, key) => {
@@ -71,5 +71,9 @@ function getEnvironment(publicUrl) {
 
   return { raw, stringified };
 }
+
+// console.log('=================');
+// console.log(getEnvironment('http://publicurl'));
+// console.log('=================');
 
 module.exports = getEnvironment;

@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { addBookmark } from 'store/bookmarks';
 
 import Button from '../button/button';
 import TextField from '../forms/text-field/text-field';
@@ -33,9 +32,7 @@ export default class InboxItem extends React.Component {
       notes: this.state.notes,
     };
 
-    const act = addBookmark(data);
-
-    this.props.dispatch(act);
+    this.props.addBookmark(data);
   }
 
   handleChangeUrl = (e) => {
@@ -104,11 +101,11 @@ export default class InboxItem extends React.Component {
 
 InboxItem.propTypes = {
   url: PropTypes.string,
-  dispatch: PropTypes.func,      // injected by react-redux.connect()
+  addBookmark: PropTypes.func,
 };
 
 InboxItem.defaultProps = {
   url: '',
-  dispatch: () => { console.log('empty/default dispatch called'); },
+  addBookmark: () => { console.log('empty/default addBookmark called'); },
 };
 

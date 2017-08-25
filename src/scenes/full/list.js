@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-
 import { getStore } from 'state';
-import App from './app';
+
+import BookmarkList from 'common/components/bookmarks/bookmark-list';
 
 const store = getStore();
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <BookmarkList />
   </Provider>,
-  document.getElementById('app'),
+  document.getElementById('list'),
 );

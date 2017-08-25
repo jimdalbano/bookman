@@ -40,6 +40,7 @@
     "react-dev-utils": "^3.0.1",
     "react-error-overlay": "^1.0.8",
     "react-test-renderer": "^15.6.1",
+    "redux-mock-store": "^1.2.3",
     "sass-loader": "^6.0.6",
     "style-loader": "0.18.2",
     "stylelint-config-standard": "^16.0.0",
@@ -62,7 +63,7 @@
   },
   "jest": {
     "modulePaths": [
-      "<rootDir>/src/common"
+      "<rootDir>/src"
     ],
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}"
@@ -84,7 +85,7 @@
     "transformIgnorePatterns": [
       "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
     ]
- },
+  },
   "babel": {
     "presets": [
       "react",
@@ -123,12 +124,16 @@
         }
       ],
       "arrow-body-style": [
-        "error",
-        "always"
+        "warn",
+        "as-needed",
+        {
+          "requireReturnForObjectLiteral": true
+        }
       ],
       "import/no-extraneous-dependencies": "off",
       "import/no-unresolved": "off",
-      "import/extensions": "off"
+      "import/extensions": "off",
+      "react/forbid-prop-types": "off"
     }
   },
   "borwserslist": [

@@ -1,0 +1,36 @@
+$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+
+@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+
+#app {
+  font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+  width: 350px;
+  /* Hmmm. Heads up. Chrome adds a scrollbar beyond this. */
+}
+
+.inbox-item-new {
+  padding: 0.5em;
+
+  button.full-list {
+    float: right;
+  }
+}
+
+.inbox-item {
+  margin-top: 2em;
+
+  button,
+  input,
+  textarea {
+    width: 100%;
+  }
+
+  input,
+  textarea {
+    margin-bottom: 1.25em;
+  }
+
+  textarea {
+    resize: vertical;
+  }
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import InboxItem from '../inbox-item';
-import { mount, render, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 
 describe('InboxItem - ', () => {
   let url = 'some-url';
@@ -50,16 +50,16 @@ describe('InboxItem - ', () => {
 
   it('Saves - dispatches the right action', done => {
     let action;
-    const dispatch = jest.fn((act) => {
+    const addBookmark = jest.fn((act) => {
       action = act;
     });
 
-    component = mount(<InboxItem url={url} dispatch={dispatch}/>);
+    component = mount(<InboxItem url={url} addBookmark={dispatch}/>);
 
     component.find('Button').simulate('click');
     done();
 
-    expect(dispatch).toHaveBeenCalled();
+    expect(addBookmark).toHaveBeenCalled();
     expect(action.type).toBe('ADD_BOOKMARK');
   });
 

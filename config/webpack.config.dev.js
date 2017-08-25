@@ -38,7 +38,7 @@ module.exports = {
 
   resolve: {
     modules: [
-        paths.appSrcCommon,
+        paths.appSrc,
         'node_modules',
         paths.appNodeModules
       ].concat(

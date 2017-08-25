@@ -1,4 +1,4 @@
-jest.mock('components/inbox-item/add-inbox-item');
+jest.mock('common/components/inbox-item/add-inbox-item');
 
 /*
   Meh. Oof meh. Kinda sucks that we have to do it this way.

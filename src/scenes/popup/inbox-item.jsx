@@ -112,12 +112,10 @@ InboxItem.defaultProps = {
   addBookmark: () => { console.log('empty/default addBookmark called'); },
 };
 
-const actionCreators = { addBookmark };
-
-const connector = (target, actions) => {
+const connector = (target, actionCreators) => {
   const mdtop = (dispatch) => {
     return {
-      addBookmark: data => dispatch(actions.addBookmark(data)),
+      addBookmark: data => dispatch(actionCreators.addBookmark(data)),
     };
   };
 
@@ -127,7 +125,5 @@ const connector = (target, actions) => {
   )(target);
 };
 
-const AddInboxItem = connector(InboxItem, actionCreators);
-
 export { connector, InboxItem };
-export default AddInboxItem;
+export default connector(InboxItem, { addBookmark });

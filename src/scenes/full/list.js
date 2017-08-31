@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { getStore } from 'state';
 
-import BookmarkList from './bookmarks';
+import BookmarkList from './list';
 
 const store = getStore();
 

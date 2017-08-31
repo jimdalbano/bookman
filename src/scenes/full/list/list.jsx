@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ListItem from './list-item';
+import ListItem from '../list-item';
 
 import './list.scss';
 
@@ -18,7 +18,6 @@ export default function List({ bookmarks, destroyBookmark }) {
     </ul>
   );
 }
-
 
 List.propTypes = {
   bookmarks: PropTypes.arrayOf(Object),

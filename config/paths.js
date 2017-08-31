@@ -8,7 +8,7 @@ const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 
 module.exports = {
   appPopupJs: resolveApp('src/scenes/popup/popup.js'),
-  appListJs: resolveApp('src/scenes/full/list.js'),
+  appListJs: resolveApp('src/scenes/full/full.js'),
   appBuild:   resolveApp('build'),
   appPublic:   resolveApp('public'),
   appChrome:   resolveApp('chrome'),

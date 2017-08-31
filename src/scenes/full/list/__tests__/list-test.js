@@ -1,8 +1,7 @@
 import React from 'react';
-import List from '../list';
-import { render, shallow } from 'enzyme';
+import { render } from 'enzyme';
 
-import Button from 'components/button/button';
+import List from '../list';
 
 describe('List - ', () => {
   const bookmarks = [{
@@ -14,7 +13,12 @@ describe('List - ', () => {
 
   const destroyBookmark = jest.fn();
 
-  const component = render(<List bookmarks={bookmarks} destroyBookmark={destroyBookmark} />);
+  const component = render(
+    <List
+      bookmarks={bookmarks}
+      destroyBookmark={destroyBookmark}
+    />
+  );
 
   it('renders the list', () => {
     expect(component.find('.bookmark-list').length).toEqual(1);

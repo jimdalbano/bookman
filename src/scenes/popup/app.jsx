@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { getCurrentTabUrl, openNewWindow } from 'lib/browser-utils';
-import AddInboxItem from 'common/components/inbox-item/add-inbox-item.js';
+import AddInboxItem from './inbox-item';
 
 import './app.scss';
 

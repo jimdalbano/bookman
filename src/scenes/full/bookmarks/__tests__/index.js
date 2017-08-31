@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import configureMockStore from 'redux-mock-store';
 import { mount, shallow } from 'enzyme';
 
-import BookmarkList from 'common/components/bookmarks/bookmark-list';
+import BookmarkList from '../index';
 
 describe('BookmarkList - ', () => {
   const middlewares = [];
@@ -25,7 +25,6 @@ describe('BookmarkList - ', () => {
       id: 'an-id',
     };
 
-    console.log(component.html());
     component.find('button').first().simulate('click');
     done();
     expect(store.getActions()).toEqual([expectedAction]);

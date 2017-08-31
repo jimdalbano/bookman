@@ -1,13 +1,14 @@
 import React from 'react';
-import InboxItem from '../inbox-item';
+import { InboxItem } from '../inbox-item';
 import { mount } from 'enzyme';
 
 describe('InboxItem - ', () => {
-  let url = 'some-url';
   const containerSelector = '.inbox-item'
-  let component;
+  let url = 'some-url';
 
   describe('Renders with known url - ', () => {
+    let component;
+
     beforeAll(() =>{
       component = mount(<InboxItem url={url} />);
     });
@@ -48,23 +49,7 @@ describe('InboxItem - ', () => {
     });
   });
 
-  it('Saves - dispatches the right action', done => {
-    let action;
-    const addBookmark = jest.fn((act) => {
-      action = act;
-    });
-
-    component = mount(<InboxItem url={url} addBookmark={dispatch}/>);
-
-    component.find('Button').simulate('click');
-    done();
-
-    expect(addBookmark).toHaveBeenCalled();
-    expect(action.type).toBe('ADD_BOOKMARK');
-  });
-
   describe('Renders with no url - ', () => {
-
     it('is loading', () => {
       const url = '';
       const component = mount(<InboxItem url={url} />);
@@ -72,4 +57,18 @@ describe('InboxItem - ', () => {
       expect(component.find('.inbox-item-loading').length).toBe(1);
     });
   });
+
+  it('Saves - adds a bookmark', () => {
+    let action;
+    const addBookmark = jest.fn((act) => {
+      action = act;
+    });
+
+    const component = mount(<InboxItem url={url} addBookmark={addBookmark}/>);
+
+    component.find('Button').simulate('click');
+
+    expect(addBookmark).toHaveBeenCalled();
+  });
+
 });

@@ -1,12 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-import Button from '../button/button';
-import TextField from '../forms/text-field/text-field';
-import TextAreaField from '../forms/textarea-field/textarea-field';
+import { addBookmark } from 'state';
+
+import Button from 'components/button/button';
+import TextField from 'components/forms/text-field/text-field';
+import TextAreaField from 'components/forms/textarea-field/textarea-field';
 
 
-export default class InboxItem extends React.Component {
+class InboxItem extends React.Component {
   constructor(props) {
     super(props);
 
@@ -109,3 +112,22 @@ InboxItem.defaultProps = {
   addBookmark: () => { console.log('empty/default addBookmark called'); },
 };
 
+const actionCreators = { addBookmark };
+
+const connector = (target, actions) => {
+  const mdtop = (dispatch) => {
+    return {
+      addBookmark: data => dispatch(actions.addBookmark(data)),
+    };
+  };
+
+  return connect(
+    null,
+    mdtop,
+  )(target);
+};
+
+const AddInboxItem = connector(InboxItem, actionCreators);
+
+export { connector, InboxItem };
+export default AddInboxItem;

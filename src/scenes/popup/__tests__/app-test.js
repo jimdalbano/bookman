@@ -1,4 +1,4 @@
-jest.mock('common/components/inbox-item/add-inbox-item');
+jest.mock('../inbox-item');
 
 /*
   Meh. Oof meh. Kinda sucks that we have to do it this way.
@@ -30,31 +30,39 @@ jest.mock('lib/browser-utils', () => {
 import Bu from 'lib/browser-utils';
 
 import React from 'react';
+import { Provider } from 'react-redux';
+import configureMockStore from 'redux-mock-store';
+
 import App from '../app';
-import { mount, render, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 
 describe('App - ', () => {
-  const containerClassSelector = '.inbox-item-new';
-  let component;
+  const middlewares = [];
+  const mockStore = configureMockStore(middlewares);
+  const store = mockStore([{}]);
 
-  beforeAll(() =>{
-    component = mount(<App />);
-  });
+  const containerClassSelector = '.inbox-item-new';
+
+  const component = mount(
+      <Provider store={store}>
+        <App />
+      </Provider>
+    );
+  const container = component.find(App);
 
   it('renders the container', () => {
-    const container = component.find(containerClassSelector);
     expect(container.length).toBe(1);
   });
 
   it('has a url in state', () => {
-    expect(component.node.state['url']).toBe('http://www.google.com');
+    expect(container.node.state['url']).toBe('http://www.google.com');
   });
 
   it('can open a full listing', () => {
     const newWindowSpy = jest.spyOn(Bu, 'openNewWindow');
-    const fullListUrl = component.node.fullListUrl;
+    const fullListUrl = container.node.fullListUrl;
+    const button = container.find('button.full-list');
 
-    const button = component.find('button.full-list');
     expect(button.length).toBe(1);
     button.first().simulate('click');
 

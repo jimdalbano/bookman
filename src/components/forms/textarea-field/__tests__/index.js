@@ -1,6 +1,7 @@
 import React from 'react';
-import TextAreaField from '../textarea-field';
 import { mount, render } from 'enzyme';
+
+import TextAreaField from '../index';
 
 describe('Textarea Field - ', () => {
   let container;

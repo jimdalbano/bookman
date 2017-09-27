@@ -1,21 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ListItem from '../list-item';
+import Bookmark from '../bookmark';
 
 import './list.scss';
 
 export default function List({ bookmarks, destroyBookmark }) {
   return (
-    <ul className="bookmark-list">
+    <div className="bookmark-list">
       { bookmarks.map((bookmark) => {
-        return (<ListItem
+        return (<Bookmark
           key={bookmark.id}
           bookmark={bookmark}
           destroyBookmark={destroyBookmark}
         />);
       })}
-    </ul>
+    </div>
   );
 }
 

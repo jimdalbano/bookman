@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 
 import { addBookmark } from 'state';
 
-import Button from 'components/button/button';
-import TextField from 'components/forms/text-field/text-field';
-import TextAreaField from 'components/forms/textarea-field/textarea-field';
+import Button from 'components/button';
+import TextField from 'components/forms/text-field';
+import TextAreaField from 'components/forms/textarea-field';
 
 
 class InboxItem extends React.Component {

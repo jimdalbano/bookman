@@ -1,0 +1,28 @@
+.bookmark {
+  border-radius: 6px;
+  border: 1px solid lightgrey;
+  padding: 0.5em;
+  margin-bottom: 0.75em;
+
+  a,
+  a:hover,
+  a:visited {
+    text-decoration: none;
+  }
+
+  .name {
+    display: block;
+    padding-bottom: 0.5em;
+    color: black;
+    font-size: 1.25em;
+    font-weight: 600;
+  }
+
+  .url {
+    color: darkgrey;
+  }
+
+  .remove {
+    float: right;
+  }
+}

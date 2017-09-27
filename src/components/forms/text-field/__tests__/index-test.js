@@ -1,5 +1,5 @@
 import React from 'react';
-import TextField from '../text-field';
+import TextField from '../index';
 import { mount, render } from 'enzyme';
 
 describe('Text Field - ', () => {

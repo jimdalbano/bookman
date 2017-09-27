@@ -25,6 +25,6 @@ describe('List - ', () => {
   });
 
   it('renders items', () => {
-    expect(component.find('li').length).toEqual(1);
+    expect(component.find('.bookmark').length).toEqual(1);
   });
 });

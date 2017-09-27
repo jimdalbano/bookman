@@ -1,6 +1,7 @@
 import React from 'react';
-import Button from '../button';
 import { mount, shallow } from 'enzyme';
+
+import Button from '../index';
 
 describe('Button - ', () => {
   let button;

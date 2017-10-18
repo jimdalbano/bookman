@@ -1,4 +1,4 @@
-$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+$icon-font-path: "bootstrap-sass/assets/fonts/bootstrap/";
 
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
 
@@ -8,7 +8,7 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
   /* Hmmm. Heads up. Chrome adds a scrollbar beyond this. */
 }
 
-.inbox-item-new {
+.inbox_item_new {
   padding: 0.5em;
 
   button.full-list {

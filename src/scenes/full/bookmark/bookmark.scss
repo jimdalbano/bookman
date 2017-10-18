@@ -9,20 +9,33 @@
   a:visited {
     text-decoration: none;
   }
+}
 
-  .name {
-    display: block;
-    padding-bottom: 0.5em;
-    color: black;
-    font-size: 1.25em;
-    font-weight: 600;
-  }
+.name {
+  display: block;
+  padding-bottom: 0.5em;
+  color: black;
+  font-size: 1.25em;
+  font-weight: 600;
+}
 
-  .url {
-    color: darkgrey;
-  }
+.url {
+  color: darkgrey;
+}
 
-  .remove {
-    float: right;
+.remove {
+  float: right;
+}
+
+ul {
+  list-style: none;
+
+  li {
+    margin-bottom: 1.25em;
+
+    a,
+    a:visited {
+      color: inherit;
+    }
   }
 }

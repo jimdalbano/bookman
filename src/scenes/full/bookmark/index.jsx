@@ -3,29 +3,29 @@ import PropTypes from 'prop-types';
 
 import Button from 'components/button';
 
-import './bookmark.scss';
+import styles from './bookmark.scss';
 
 export default function Bookmark(props) {
   const { bookmark, destroyBookmark } = props;
 
   return (
-    <div className="bookmark">
+    <div className={styles.bookmark}>
       <a
-        className="name"
+        className={styles.name}
         target="_blank"
         href={bookmark.url}
       >
         {bookmark.name}
       </a>
       <a
-        className="url"
+        className={styles.url}
         target="_blank"
         href={bookmark.url}
       >
         {bookmark.url}
       </a>
       <p
-        className="notes"
+        className={styles.notes}
       >
         {bookmark.notes}
       </p>

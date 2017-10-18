@@ -3,7 +3,7 @@ import React from 'react';
 import { getCurrentTabUrl, openNewWindow } from 'lib/browser-utils';
 import AddInboxItem from './inbox-item';
 
-import './app.scss';
+import styles from './app.scss';
 
 export default class App extends React.Component {
   constructor() {
@@ -27,7 +27,7 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div className="inbox-item-new">
+      <div className={styles.inbox_item_new}>
         <button
           className="btn btn-primary btn-xs full-list"
           onClick={this.openFullList}

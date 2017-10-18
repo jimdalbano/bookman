@@ -3,11 +3,9 @@ import PropTypes from 'prop-types';
 
 import Bookmark from '../bookmark';
 
-import './list.scss';
-
 export default function List({ bookmarks, destroyBookmark }) {
   return (
-    <div className="bookmark-list">
+    <div>
       { bookmarks.map((bookmark) => {
         return (<Bookmark
           key={bookmark.id}

@@ -1,14 +1,8 @@
 'use strict';
 
-process.env.BABEL_ENV = 'development';
-process.env.NODE_ENV = 'development';
-
 process.on('unhandledRejection', err => {
   throw err;
 });
-
-
-require('../config/env');
 
 const chalk = require('chalk');
 const fs = require('fs-extra');
@@ -22,8 +16,6 @@ const useYarn = fs.existsSync(paths.yarnLockFile);
 
 function build() {
   console.log('Creating an optimized production build...');
-
-  let previousFileSizes = 100;
 
   let compiler = webpack(config);
   return new Promise((resolve, reject) => {
@@ -39,17 +31,9 @@ function build() {
       }
       return resolve({
         stats,
-        previousFileSizes,
         warnings: messages.warnings,
       });
     });
-  });
-}
-
-function copyPublicFolder() {
-  fs.copySync(paths.appPublic, paths.appBuild, {
-    dereference: true,
-    filter: file => file !== paths.appHtml,
   });
 }
 
@@ -61,12 +45,11 @@ function copyChromeFolder() {
 }
 
 fs.emptyDirSync(paths.appBuild);
-copyPublicFolder();
 copyChromeFolder();
 
 build()
   .then(
-    ({ stats, previousFileSizes, warnings }) => {
+    ({ stats, warnings }) => {
       if (warnings.length) {
         console.log(chalk.yellow('Compiled with warnings.\n'));
         console.log(warnings.join('\n\n'));

@@ -3,22 +3,14 @@
 process.env.BABEL_ENV = 'development';
 process.env.NODE_ENV = 'development';
 
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const path = require('path');
+const StyleLintPlugin = require('stylelint-webpack-plugin');
 const webpack = require('webpack');
 
-const env = require('./env');
 const paths = require('./paths');
 
 const publicPath = '/';
-
-const StyleLintPlugin = require('stylelint-webpack-plugin');
-
-// const ExtractTextPlugin = require("extract-text-webpack-plugin");
-// const extractSass = new ExtractTextPlugin({
-    // filename: "[name].[contenthash].css",
-    // // disable: process.env.NODE_ENV === "development"
-// });
-
 const nodeModules = path.resolve(path.join(__dirname, 'node_modules'));
 
 module.exports = {
@@ -38,12 +30,9 @@ module.exports = {
 
   resolve: {
     modules: [
-        paths.appSrc,
-        'node_modules',
-        paths.appNodeModules
-      ].concat(
-        process.env.NODE_PATH.split(path.delimeter).filter(Boolean)
-    ),
+      paths.appSrc,
+      paths.appNodeModules
+    ],
     extensions: ['.js', '.jsx', '.json'],
   },
 
@@ -72,28 +61,10 @@ module.exports = {
           /\.jpe?g$/,
           /\.png$/,
           /\.scss$/,
-          /\.sass$/,
+          /\.(eot|woff|woff2|ttf|svg|png|jpg)$/,
         ],
         loader: require.resolve('file-loader'),
         options: {
-          name: 'static/media/[name].[hash:8].[ext]',
-        },
-      },
-
-      {
-        test: /\.(eot|woff|woff2|ttf|svg|png|jpg)$/,
-        include: [
-          paths.appSrc,
-          path.join(nodeModules, 'bootstrap-sass'),
-        ],
-        use: require.resolve('url-loader'),
-      },
-
-      {
-        test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
-        loader: require.resolve('url-loader'),
-        options: {
-          limit: 10000,
           name: 'static/media/[name].[hash:8].[ext]',
         },
       },
@@ -105,41 +76,55 @@ module.exports = {
         loader: require.resolve('babel-loader')
       },
 
-      // "postcss" loader applies autoprefixer to our CSS.
-      // "css" loader resolves paths in CSS and adds assets as dependencies.
-      // "style" loader turns CSS into JS modules that inject <style> tags.
-      // In production, we use a plugin to extract that CSS to a file, but
-      // in development "style" loader enables hot editing of CSS.
       {
-        test: [/\.css$/, /\.scss$/, /\.sass$/],
-        include: [
-          paths.appSrc,
-          path.join(nodeModules, 'bootstrap-sass'),
-        ],
-        use: [
-          {
-            loader: require.resolve('style-loader'),
-          },
-          {
-            loader: require.resolve('css-loader'),
-            options: {
-              importLoaders: 1,
+        test: /\.(eot|woff|woff2|ttf|otf|svg|png|jpg)$/,
+        loader: require.resolve('url-loader'),
+        options: {
+          limit: 200,
+          name: 'fonts/[name].[hash:8].[ext]',
+        },
+      },
+
+      {
+        test: /\.(js|jsx)$/,
+        include: paths.appSrc,
+        exclude: /node_modules/,
+        loader: require.resolve('babel-loader')
+      },
+
+      {
+        test: [/\.scss$/],
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: require.resolve('css-loader'),
+              options: {
+                importLoaders: 1,
+                modules: true,
+                localIdentName: "[name]__[local]__[hash:base64:5]",
+              },
             },
-          },
-          {
-            loader: require.resolve('postcss-loader'),
-            options: {
-              ident: 'postcss', // https://webpack.js.org/guides/migrating/#complex-options,
-              sourceMap: true,
+            {
+              loader: require.resolve('postcss-loader'),
+              options: {
+                sourceMap: true,
+                plugins: function() {
+                  return [
+                    require('postcss-cssnext'),
+                  ];
+                },
+              },
             },
-          },
-          {
-            loader: require.resolve('sass-loader'),
-            options: {
-              sourceMap: true,
+            {
+              loader: require.resolve('sass-loader'),
+              options: {
+                sourceMap: true,
+                includePaths: [ 'node_modules' ],
+              },
             },
-          },
-        ],
+          ],
+        }),
       },
     ]
   },
@@ -147,6 +132,10 @@ module.exports = {
   plugins: [
     new StyleLintPlugin({
       syntax: 'scss',
+    }),
+    new ExtractTextPlugin({
+      filename: '[name].css',
+      allChunks: true,
     }),
   ]
 };

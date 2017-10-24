@@ -92,8 +92,49 @@ module.exports = {
         loader: require.resolve('babel-loader')
       },
 
+      // Need to import/require bootstrap in js/jsx to pull bootstrap
+      // into the picture. This keeps bootstrap global (not 'css-module'ified).
+      // The rest of our s|css is handled in a different loader config.
+      //
+      // The only downside is that we need to import it into our js and not
+      // use acutally use/reference it. How do you spell 'hack'?
       {
-        test: [/\.scss$/],
+        test: /bootstrap.scss$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: require.resolve('css-loader'),
+              options: {
+                importLoaders: 1,
+                modules: false,
+              },
+            },
+            {
+              loader: require.resolve('postcss-loader'),
+              options: {
+                sourceMap: true,
+                plugins: function() {
+                  return [
+                    require('postcss-cssnext'),
+                  ];
+                },
+              },
+            },
+            {
+              loader: require.resolve('sass-loader'),
+              options: {
+                sourceMap: true,
+                includePaths: [ 'node_modules' ],
+              },
+            },
+          ],
+        }),
+      },
+
+      {
+        test: /\.scss$/,
+        exclude: [ /bootstrap.scss$/ ],
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
@@ -108,6 +149,7 @@ module.exports = {
             {
               loader: require.resolve('postcss-loader'),
               options: {
+                ident: 'postcss',
                 sourceMap: true,
                 plugins: function() {
                   return [

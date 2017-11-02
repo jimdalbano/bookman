@@ -8,8 +8,6 @@ process.on('unhandledRejection', err => {
   throw err;
 });
 
-require('../config/env');
-
 const jest = require('jest');
 const argv = process.argv.slice(2);
 

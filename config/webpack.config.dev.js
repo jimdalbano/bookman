@@ -13,6 +13,54 @@ const paths = require('./paths');
 const publicPath = '/';
 const nodeModules = path.resolve(path.join(__dirname, 'node_modules'));
 
+/* ====================================================================
+
+    CSS pipeline loader configs
+
+    Need 2 different css-loader configs - one with modules; one w/out.
+    Lets us use css modules w/in the app and but not in 3rd party libs
+    (bootstrap, etc).
+*/
+const cssLoaderPlain = {
+  loader: require.resolve('css-loader'),
+  options: {
+    importLoaders: 1,
+    modules: false,
+  },
+};
+
+const cssLoaderModules = {
+  loader: require.resolve('css-loader'),
+  options: {
+    importLoaders: 1,
+    modules: true,
+    localIdentName: "[name]__[local]__[hash:base64:5]",
+  },
+};
+
+const postcssLoader = {
+  loader: require.resolve('postcss-loader'),
+  options: {
+    sourceMap: true,
+    plugins: function() {
+      return [
+        require('postcss-cssnext'),
+      ];
+    },
+  },
+};
+
+const sassLoader = {
+  loader: require.resolve('sass-loader'),
+  options: {
+    sourceMap: true,
+    includePaths: [ 'node_modules' ],
+  },
+};
+
+/* ==================================================================== */
+
+
 module.exports = {
   devtool: 'cheap-module-source-map',
   entry: {
@@ -80,7 +128,7 @@ module.exports = {
         test: /\.(eot|woff|woff2|ttf|otf|svg|png|jpg)$/,
         loader: require.resolve('url-loader'),
         options: {
-          limit: 200,
+          limit: 20000,
           name: 'fonts/[name].[hash:8].[ext]',
         },
       },
@@ -92,79 +140,33 @@ module.exports = {
         loader: require.resolve('babel-loader')
       },
 
-      // Need to import/require bootstrap in js/jsx to pull bootstrap
-      // into the picture. This keeps bootstrap global (not 'css-module'ified).
-      // The rest of our s|css is handled in a different loader config.
-      //
-      // The only downside is that we need to import it into our js and not
-      // use acutally use/reference it. How do you spell 'hack'?
+      // Gives us a way to use external (s)css libs without css-module-ication
       {
-        test: /bootstrap.scss$/,
+        test: [
+          /global\.scss$/,
+        ],
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
-            {
-              loader: require.resolve('css-loader'),
-              options: {
-                importLoaders: 1,
-                modules: false,
-              },
-            },
-            {
-              loader: require.resolve('postcss-loader'),
-              options: {
-                sourceMap: true,
-                plugins: function() {
-                  return [
-                    require('postcss-cssnext'),
-                  ];
-                },
-              },
-            },
-            {
-              loader: require.resolve('sass-loader'),
-              options: {
-                sourceMap: true,
-                includePaths: [ 'node_modules' ],
-              },
-            },
+            cssLoaderPlain,
+            postcssLoader,
+            sassLoader,
           ],
         }),
       },
 
+      // Application styles to be css-module-ified
       {
-        test: /\.scss$/,
-        exclude: [ /bootstrap.scss$/ ],
+        test: [/\.scss$/, /\.css$/],
+        exclude: [
+          /global\.scss$/,
+        ],
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
-            {
-              loader: require.resolve('css-loader'),
-              options: {
-                importLoaders: 1,
-                modules: true,
-                localIdentName: "[name]__[local]__[hash:base64:5]",
-              },
-            },
-            {
-              loader: require.resolve('postcss-loader'),
-              options: {
-                ident: 'postcss',
-                sourceMap: true,
-                plugins: function() {
-                  return [
-                    require('postcss-cssnext'),
-                  ];
-                },
-              },
-            },
-            {
-              loader: require.resolve('sass-loader'),
-              options: {
-                sourceMap: true,
-                includePaths: [ 'node_modules' ],
-              },
-            },
+            cssLoaderModules,
+            postcssLoader,
+            sassLoader,
           ],
         }),
       },

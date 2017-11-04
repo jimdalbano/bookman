@@ -29,21 +29,17 @@ describe('InboxItem - ', () => {
     });
 
     it('collects form changes', done => {
-      const urlField = component.find("[name='url']");
       const nameField = component.find("[name='name']");
       const notesField = component.find("[name='notes']");
 
-      const newUrl = 'new-url';
       const newName = 'new-name';
       const newNotes = 'new-notes';
 
-      urlField.first().simulate('change', { target: { value: newUrl } });
       nameField.first().simulate('change', { target: { value: newName } });
       notesField.first().simulate('change', { target: { value: newNotes } });
       done();
 
       const state = component.node.state;
-      expect(state['url']).toBe(newUrl);
       expect(state['name']).toBe(newName);
       expect(state['notes']).toBe(newNotes);
     });

@@ -38,12 +38,6 @@ class InboxItem extends React.Component {
     this.props.addBookmark(data);
   }
 
-  handleChangeUrl = (e) => {
-    this.setState({
-      url: e.target.value,
-    });
-  }
-
   handleChangeName = (e) => {
     this.setState({
       name: e.target.value,
@@ -64,13 +58,6 @@ class InboxItem extends React.Component {
         <div
           className="inbox-item"
         >
-          <TextField
-            labelFor="url"
-            labelText="Url"
-            fieldName="url"
-            fieldValue={this.state.url}
-            onChange={this.handleChangeUrl}
-          />
           <TextField
             labelFor="name"
             labelText="Name"

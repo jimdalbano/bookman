@@ -61,7 +61,9 @@ describe('App - ', () => {
   it('can open a full listing', () => {
     const newWindowSpy = jest.spyOn(Bu, 'openNewWindow');
     const fullListUrl = container.node.fullListUrl;
-    const button = container.find('button.full-list');
+
+    // TODO Yup. not too cool relying on a font-awesome class here.
+    const button = container.find('i');
 
     expect(button.length).toBe(1);
     button.first().simulate('click');

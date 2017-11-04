@@ -2,3 +2,11 @@ $fa-font-path:        "~font-awesome/fonts" !default;
 @import '~font-awesome/scss/font-awesome';
 
 @import '~bootstrap/scss/bootstrap';
+
+body.popup {
+  /* TODO yes, please. better fonts.
+  font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+  /* Hmmm. Heads up. Chrome adds a scrollbar beyond this. */
+  width: 350px;
+}
+

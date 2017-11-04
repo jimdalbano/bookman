@@ -1,8 +1,9 @@
 import React from 'react';
 
 import { getCurrentTabUrl, openNewWindow } from 'lib/browser-utils';
-import AddInboxItem from './inbox-item';
+import FullListIconLink from 'components/icon-links';
 
+import AddInboxItem from './inbox-item';
 import styles from './app.scss';
 
 export default class App extends React.Component {
@@ -27,17 +28,17 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div className={styles.inbox_item_new}>
-        <button
-          className="btn btn-primary btn-xs full-list"
-          onClick={this.openFullList}
-          tabIndex="0"
-        >
-          Full List
-        </button>
-        <AddInboxItem
-          url={this.state.url}
-        />
+      <div>
+        <div className="d-flex justify-content-end">
+          <FullListIconLink
+            onClickHandler={this.openFullList}
+          />
+        </div>
+        <div className={styles.inbox_item_new}>
+          <AddInboxItem
+            url={this.state.url}
+          />
+        </div>
       </div>
     );
   }

@@ -12,6 +12,8 @@
     "babel-jest": "^20.0.3",
     "babel-loader": "7.1.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-es2015-spread": "^6.22.0",
+    "babel-plugin-transform-object-assign": "^6.22.0",
     "babel-preset-env": "^1.5.2",
     "babel-preset-es2017": "^6.24.1",
     "babel-preset-jest": "^20.0.3",
@@ -90,13 +92,16 @@
   },
   "babel": {
     "presets": [
+      "es2017",
       "react",
       "stage-2"
     ],
     "env": {
       "test": {
         "plugins": [
-          "transform-es2015-modules-commonjs"
+          "transform-es2015-modules-commonjs",
+          "transform-object-assign",
+          "transform-es2015-spread"
         ]
       }
     }

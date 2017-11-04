@@ -28,7 +28,7 @@ export default class TextField extends React.Component {
         className={this.containerClass}
       >
         <label
-          htmlFor={this.props.labelFor}
+          htmlFor={this.props.fieldName}
         >
           {this.props.labelText}
         </label>
@@ -44,7 +44,6 @@ export default class TextField extends React.Component {
 }
 
 TextField.propTypes = {
-  labelFor: PropTypes.string,
   labelText: PropTypes.string,
   fieldName: PropTypes.string,
   fieldValue: PropTypes.string,
@@ -52,7 +51,6 @@ TextField.propTypes = {
 };
 
 TextField.defaultProps = {
-  labelFor: '',
   labelText: '',
   fieldName: '',
   fieldValue: '',

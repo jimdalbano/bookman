@@ -26,7 +26,7 @@ export default class TextAreaField extends React.Component {
         className={this.containerClass}
       >
         <label
-          htmlFor={this.props.labelFor}
+          htmlFor={this.props.fieldName}
         >
           {this.props.labelText}
         </label>
@@ -44,7 +44,6 @@ export default class TextAreaField extends React.Component {
 }
 
 TextAreaField.propTypes = {
-  labelFor: PropTypes.string,
   labelText: PropTypes.string,
   rows: PropTypes.number,
   cols: PropTypes.number,
@@ -54,7 +53,6 @@ TextAreaField.propTypes = {
 };
 
 TextAreaField.defaultProps = {
-  labelFor: '',
   labelText: '',
   rows: 1,
   cols: 1,

@@ -8,7 +8,6 @@ describe('Textarea Field - ', () => {
   let label;
   let field;
 
-  const labelFor = 'field-name';
   const labelText = 'label text';
   const fieldName = 'field-name';
   const fieldValue = 'field-value';
@@ -21,7 +20,6 @@ describe('Textarea Field - ', () => {
     beforeAll(() => {
       const component = render(
         <TextAreaField
-          labelFor={labelFor}
           labelText={labelText}
           fieldName={fieldName}
           fieldValue={fieldValue}
@@ -56,7 +54,6 @@ describe('Textarea Field - ', () => {
     beforeAll(() => {
       const component = mount(
         <TextAreaField
-          labelFor={labelFor}
           labelText={labelText}
           fieldName={fieldName}
           fieldValue={fieldValue}

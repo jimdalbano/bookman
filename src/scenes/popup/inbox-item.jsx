@@ -59,7 +59,6 @@ class InboxItem extends React.Component {
           className="inbox-item"
         >
           <TextField
-            labelFor="name"
             labelText="Name"
             fieldName="name"
             fieldValue={this.state.name}
@@ -67,7 +66,6 @@ class InboxItem extends React.Component {
           />
 
           <TextAreaField
-            labelFor="notes"
             labelText="Notes"
             rows={notesInputRows}
             fieldName="notes"

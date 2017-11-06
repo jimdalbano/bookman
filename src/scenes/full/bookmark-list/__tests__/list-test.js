@@ -20,11 +20,12 @@ describe('List - ', () => {
     />
   );
 
+  /*
+   * Yup. Not much of test. Really just want to be sure that attempting
+   * to render a List won't rip a hole in our couch.
+   *
+   */
   it('renders the list', () => {
-    expect(component.find('.bookmark-list').length).toEqual(1);
-  });
-
-  it('renders items', () => {
-    expect(component.find('.bookmark').length).toEqual(1);
+    expect(component.find('.bookmarkList').length).toEqual(1);
   });
 });

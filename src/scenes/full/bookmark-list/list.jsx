@@ -4,8 +4,9 @@ import PropTypes from 'prop-types';
 import Bookmark from '../bookmark';
 
 export default function List({ bookmarks, destroyBookmark }) {
+  // TODO Ick! .bookmarkList only exists for testing. Nasty.
   return (
-    <div>
+    <div className="bookmarkList">
       { bookmarks.map((bookmark) => {
         return (<Bookmark
           key={bookmark.id}

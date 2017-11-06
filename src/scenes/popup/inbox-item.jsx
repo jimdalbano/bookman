@@ -1,3 +1,4 @@
+import ClassNames from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -8,6 +9,7 @@ import Button from 'components/button';
 import TextField from 'components/forms/text-field';
 import TextAreaField from 'components/forms/textarea-field';
 
+import styles from './inbox-item.scss';
 
 class InboxItem extends React.Component {
   constructor(props) {
@@ -52,34 +54,39 @@ class InboxItem extends React.Component {
 
   render() {
     const notesInputRows = 5;
+    const formClass = ClassNames('d-flex', 'flex-column', styles.form);
+    const buttonRowClass = ClassNames('d-flex', 'justify-content-end');
 
     if (this.state.url.length > 0) {
       return (
-        <div
-          className="inbox-item"
-        >
-          <TextField
-            labelText="Name"
-            fieldName="name"
-            fieldValue={this.state.name}
-            onChange={this.handleChangeName}
-          />
+        <div className="add-inbox-item">
+          <div className={formClass} >
+            <TextField
+              labelText="Name"
+              fieldName="name"
+              fieldValue={this.state.name}
+              onChange={this.handleChangeName}
+            />
 
-          <TextAreaField
-            labelText="Notes"
-            rows={notesInputRows}
-            fieldName="notes"
-            fieldValue={this.state.notes}
-            onChange={this.handleChangeNotes}
-          />
+            <TextAreaField
+              labelText="Notes"
+              rows={notesInputRows}
+              fieldName="notes"
+              fieldValue={this.state.notes}
+              onChange={this.handleChangeNotes}
+            />
+          </div>
 
-          <Button
-            label="Save"
-            onClick={this.save}
-          />
+          <div className={buttonRowClass} >
+            <Button
+              label="Perfect!"
+              onClick={this.save}
+            />
+          </div>
         </div>
       );
     }
+
 
     return (
       <div className="inbox-item-loading"> .... Loading ... </div>
@@ -89,12 +96,12 @@ class InboxItem extends React.Component {
 
 InboxItem.propTypes = {
   url: PropTypes.string,
-  addBookmark: PropTypes.func,
+  addBookmark: PropTypes.func, // Injected via redux
 };
 
 InboxItem.defaultProps = {
   url: '',
-  addBookmark: () => { console.log('empty/default addBookmark called'); },
+  addBookmark: () => { return false; }, // Injected via redux
 };
 
 const connector = (target, actionCreators) => {

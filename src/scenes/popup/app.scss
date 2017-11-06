@@ -1,26 +1,8 @@
-.inbox_item_new {
+.linkRow {
+  padding: 0.25em;
+}
+
+.inboxItemNew {
   padding: 0.5em;
-
-  button.full-list {
-    float: right;
-  }
 }
 
-.inbox-item {
-  margin-top: 2em;
-
-  button,
-  input,
-  textarea {
-    width: 100%;
-  }
-
-  input,
-  textarea {
-    margin-bottom: 1.25em;
-  }
-
-  textarea {
-    resize: vertical;
-  }
-}

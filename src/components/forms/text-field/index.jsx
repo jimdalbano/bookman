@@ -10,9 +10,9 @@ export default class TextField extends React.Component {
     };
   }
 
-  containerClass = 'text-field';
+  containerClass = 'form-group';
+  inputClass = 'form-control';
   inputType = 'text';
-
 
   handleChange = (e) => {
     this.setState({
@@ -34,6 +34,7 @@ export default class TextField extends React.Component {
         </label>
         <input
           type={this.inputType}
+          className={this.inputClass}
           name={this.props.fieldName}
           value={this.state.fieldValue}
           onChange={this.handleChange}
@@ -54,5 +55,5 @@ TextField.defaultProps = {
   labelText: '',
   fieldName: '',
   fieldValue: '',
-  onChange: () => { console.log('empty/default handleChange called'); },
+  onChange: () => { return false; },
 };

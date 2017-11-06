@@ -1,3 +1,4 @@
+import ClassNames from 'classnames';
 import React from 'react';
 
 import { getCurrentTabUrl, openNewWindow } from 'lib/browser-utils';
@@ -27,14 +28,16 @@ export default class App extends React.Component {
   }
 
   render() {
+    const linkRowClass = ClassNames('d-flex', 'justify-content-end', styles.linkRow);
+
     return (
       <div>
-        <div className="d-flex justify-content-end">
+        <div className={linkRowClass}>
           <FullListIconLink
             onClickHandler={this.openFullList}
           />
         </div>
-        <div className={styles.inbox_item_new}>
+        <div className={styles.inboxItemNew}>
           <AddInboxItem
             url={this.state.url}
           />

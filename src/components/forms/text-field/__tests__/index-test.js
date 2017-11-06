@@ -14,7 +14,7 @@ describe('Text Field - ', () => {
   const handleChange = jest.fn();
 
   const newValue = 'a new value';
-  const containerClass = 'text-field';
+  const containerClass = 'form-group';
 
   describe('Renders - ', () => {
     beforeAll(() => {

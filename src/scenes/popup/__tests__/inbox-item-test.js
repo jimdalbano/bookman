@@ -3,7 +3,7 @@ import { InboxItem } from '../inbox-item';
 import { mount } from 'enzyme';
 
 describe('InboxItem - ', () => {
-  const containerSelector = '.inbox-item'
+  const containerSelector = '.add-inbox-item'
   let url = 'some-url';
 
   describe('Renders with known url - ', () => {

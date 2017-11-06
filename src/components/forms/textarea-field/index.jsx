@@ -11,6 +11,7 @@ export default class TextAreaField extends React.Component {
   }
 
   containerClass = 'textarea-field';
+  inputClass = 'form-control';
 
   handleChange = (e) => {
     this.setState({
@@ -31,7 +32,8 @@ export default class TextAreaField extends React.Component {
           {this.props.labelText}
         </label>
         <textarea
-          type="text"
+          type={this.inputType}
+          className={this.inputClass}
           rows={this.props.rows}
           cols={this.props.cols}
           name={this.props.fieldName}

@@ -14,14 +14,14 @@ In no particular order.
  - [x] better form fields
  - [x] Bootstrap!!!!!!
  - [x] links in 'Full List' open in new tab
- - [o] Icons-no-buttons
+ - [ ] Icons - no buttons
    - [x] 'Full List'
    - [ ] Remove
  - [ ] PRB: long mouse travel distance from 'Save' to icon in toolbar to close
  - [ ] ListItem!!!!
    - [ ] action links:
      - [x] remove
-     - [?] see notes - perhaps.
+     - [ ] see notes - perhaps.
      - [ ] edit
  - [ ] 'Grid View'
  - [ ] Import Bookmarks
